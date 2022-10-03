@@ -1,19 +1,14 @@
 package model;
 
-import java.time.LocalDate;
-
 public class Post {
     private String title;
     private String body;
-    private LocalDate date;
-    // LocalDate.now(); // Create a date object
+    private String date;
 
-
-    public Post(LocalDate myObj) {
-        this.date = myObj;
+    public Post() {
     }
 
-    public Post(String title, String body, LocalDate date) {
+    public Post(String title, String body, String date) {
         this.title = title;
         this.body = body;
         this.date = date;
@@ -35,11 +30,11 @@ public class Post {
         this.body = body;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

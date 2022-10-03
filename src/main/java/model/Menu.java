@@ -17,7 +17,7 @@ public class Menu {
         System.out.println("2. Skapa ny användare");
         System.out.println("3. Avluta");
     }*/
-    public void displayStartMenu() {
+    public static void displayStartMenu() {
         System.out.println("1. Visa inlägg");
         System.out.println("2. Skriv ett inlägg");
         System.out.println("3. Avsluta");
