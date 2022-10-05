@@ -12,11 +12,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    // TODO 1. Save entries to JSON, do not overwrite old entries (check date does not change)
-    // ....... Antingen så hämtar jag JSON till en List<>, eler så finns det en JSON metod för att appenda data
-    // TODO 2. Read from JSON file the entries
-    // TODO 3. Add user JSON and let user create new User
-    // TODO 4. Let user log in and only then can you read (only that users entries) and write
+    // TODO Add user JSON and let user create new User
+    // TODO Let user log in and only then can you read (only that users entries) and write
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
@@ -34,10 +31,14 @@ public class Main {
                 int choiceOne = Integer.parseInt(scanner.nextLine());
 
                 if (choiceOne == 1) {
+                    // Before we list the entries, make sure list is updated from json-file
+                    posts = updatePostsList();
+
                     for (Post post : posts) {
                         System.out.printf("%s - %s \n", post.getDate(), post.getTitle());
                         System.out.printf("%s\n", post.getBody());
                     }
+
                 } else if (choiceOne == 2) {
                     System.out.println("Ange din titel:");
                     String postTitle = scanner.nextLine();
