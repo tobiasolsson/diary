@@ -21,8 +21,6 @@ public class Main {
         List<User> users = new ArrayList<>();
         users.add(new User("Tobias"));
 
-
-        // TODO Deal with empty file, try/catch?
         List<Post> posts = updatePostsList();
 
         while (true) {
@@ -65,10 +63,20 @@ public class Main {
 
     // TODO Put in own Class? service/utility
     static List<Post> updatePostsList() throws IOException {
+        // Returns empty List if nothing in JSON-file.
+        // Print error if JSON-file is empty
         ObjectMapper mapper = new ObjectMapper();
 
-        return List.of(mapper.readValue(Paths.get("src/main/resources/diary.json").toFile(),
+        List<Post> updatedList = new ArrayList<>();
+
+        try {
+            updatedList = List.of(mapper.readValue(Paths.get("src/main/resources/diary.json").toFile(),
                 Post[].class));
+        } catch (Exception e) {
+            System.out.println("Inga inlägg ännu.");
+        }
+
+        return updatedList;
     }
 
     static List<Post> addNewEntry(Post newEntry) throws IOException {
