@@ -44,14 +44,15 @@ public class Menu {
                     // Update JSON with new user, so we can write entries to JSON
                     Utility.writeNewUserToJSON(newUser, users);
                 }
-
-
             } else if (userMenuChoice == 3) {
+                System.out.println("Välkommen åter!");
                 System.exit(0);
+            } else {
+                System.out.println("Använd siffrorna 1-3 för att välja i menyn");
             }
 
         } catch (Exception e) {
-            System.out.println("Oj");
+            System.out.println("Fel input, använd siffrorna 1-3");
         }
         return null;
     }
@@ -69,6 +70,7 @@ public class Menu {
                 users = Utility.updatePostsList();
 
                 for (Post post : user.getEntries()) {
+                    System.out.println();
                     System.out.printf("%s - %s \n", post.getDate(), post.getTitle());
                     System.out.printf("%s\n", post.getBody());
                 }

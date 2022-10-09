@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    // TODO check wrong input in every menu, to test for errors
+    // TODO hur ska jag visa inläggen som nu eller bara titel och datum så får man välja om man vill läsa inlägget?
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
 

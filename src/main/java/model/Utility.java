@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Utility {
+    static Path path = Paths.get("src/main/resources/diary.json");
     public static List<User> updatePostsList() throws IOException {
         // Returns empty List if nothing in JSON-file.
         // Print error if JSON-file is empty
@@ -17,7 +18,7 @@ public class Utility {
         List<User> updatedList = new ArrayList<>();
 
         try {
-            List<User> tmpUpdatedList = List.of(mapper.readValue(Paths.get("src/main/resources/diary.json").toFile(),
+            List<User> tmpUpdatedList = List.of(mapper.readValue(path.toFile(),
                     User[].class));
             updatedList.addAll(tmpUpdatedList);
         } catch (Exception e) {
@@ -30,7 +31,6 @@ public class Utility {
     public static List<User> addNewEntry(Post newEntry, User user, List<User> users) throws IOException {
         // Update list of posts and write to JSON file, then return the new list to update main function
         ObjectMapper mapper = new ObjectMapper();
-        Path path = Paths.get("src/main/resources/diary.json");
 
         // Update entries list in user
         User updatedUser = updateUserEntries(newEntry, user);
@@ -70,7 +70,6 @@ public class Utility {
 
     public static void writeNewUserToJSON(User newUser, List<User> users) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        Path path = Paths.get("src/main/resources/diary.json");
 
         users.add(newUser);
 
