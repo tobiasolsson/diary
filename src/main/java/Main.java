@@ -14,8 +14,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    // TODO Add user JSON and let user create new User
-    // TODO Let user log in and only then can you read (only that users entries) and write
+    // TODO check wrong input in every menu, to test for errors
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
 

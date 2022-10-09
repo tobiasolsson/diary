@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,10 +35,19 @@ public class Menu {
                     System.out.println("Ingen användare finns, vänligen skapa en ny användare innan du loggar in!");
                 }
             } else if (userMenuChoice == 2) {
-                // TODO Create new user, then back to main menu
+                System.out.println("Skriv (1) för att skapa en ny användare");
+                System.out.println("Skriv (2) för att gå tillbaka");
+                int userCreationMenuChoice = Integer.parseInt(scanner.nextLine());
+                if (userCreationMenuChoice == 1) {
+                    String newUserName = scanner.nextLine();
+                    User newUser = new User(newUserName, new ArrayList<>());
+                    // Update JSON with new user, so we can write entries to JSON
+                    Utility.writeNewUserToJSON(newUser, users);
+                }
+
 
             } else if (userMenuChoice == 3) {
-                // TODO exit
+                System.exit(0);
             }
 
         } catch (Exception e) {
@@ -48,7 +58,6 @@ public class Menu {
 
     public static List<User> loggedInMenu(String currentUser, User user, List<User> users) {
         Scanner scanner = new Scanner(System.in);
-        // TODO lift this entire block to a class
         // if user == null display start menu
         // if user == someone, display entriesMenu
         Menu.displayEntriesMenu(currentUser);
@@ -81,6 +90,7 @@ public class Menu {
                 users = Utility.addNewEntry(newEntry, user, users);
             } else if (entriesMenuChoice == 3) {
                 System.out.println("Välkommen åter!");
+                System.exit(0);
             }
         } catch (Exception e) {
             System.out.println("Använd endast siffror i meny valen!");
@@ -89,7 +99,6 @@ public class Menu {
     }
 
     public static void displayStartMenu(String userName) {
-        // TODO Dynamically display user name or if none is selected
         if (userName == null) {
             System.out.println("Aktiv användare: Ingen");
         } else {
@@ -101,7 +110,6 @@ public class Menu {
     }
 
     public static void displayEntriesMenu(String userName) {
-        // TODO Dynamically display user name
         System.out.println("Aktiv användare: " + userName);
         System.out.println("1. Visa inlägg");
         System.out.println("2. Skriv ett inlägg");

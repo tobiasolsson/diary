@@ -67,4 +67,13 @@ public class Utility {
         }
         return null;
     }
+
+    public static void writeNewUserToJSON(User newUser, List<User> users) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        Path path = Paths.get("src/main/resources/diary.json");
+
+        users.add(newUser);
+
+        mapper.writeValue(path.toFile(), users);
+    }
 }
