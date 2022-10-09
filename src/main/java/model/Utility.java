@@ -33,31 +33,28 @@ public class Utility {
         ObjectMapper mapper = new ObjectMapper();
 
         // Update entries list in user
-        User updatedUser = updateUserEntries(newEntry, user);
+        updateUserEntries(newEntry, user);
 
         // Update user in user list
-        List<User> updatedUsers = updateUserList(updatedUser, users);
+        updateUserList(user, users);
 
         // Write new user list to JSON
-        mapper.writeValue(path.toFile(), updatedUsers);
+        mapper.writeValue(path.toFile(), users);
 
         // return updated users list with the new entry
-        return updatedUsers;
-    }
-
-    private static List<User> updateUserList(User updatedUser, List<User> users) {
-        for (User user: users) {
-            if (user.getName().equalsIgnoreCase(updatedUser.getName())) user.setEntries(updatedUser.getEntries());
-        }
         return users;
     }
 
-    static User updateUserEntries(Post newEntry, User user) {
+    private static void updateUserList(User updatedUser, List<User> users) {
+        for (User user: users) {
+            if (user.getName().equalsIgnoreCase(updatedUser.getName())) user.setEntries(updatedUser.getEntries());
+        }
+    }
+
+    static void updateUserEntries(Post newEntry, User user) {
         List<Post> userEntries = user.getEntries();
         userEntries.add(newEntry);
         user.setEntries(userEntries);
-
-        return user;
     }
 
     public static User getCurrentUser(String currentUserName, List<User> users) {
