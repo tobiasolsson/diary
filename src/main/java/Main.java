@@ -1,16 +1,9 @@
-import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Menu;
-import model.Post;
 import model.User;
 import model.Utility;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
