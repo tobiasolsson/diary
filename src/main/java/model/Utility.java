@@ -50,7 +50,7 @@ public class Utility {
      * @return users is the new updates list of users
      * @throws IOException
      */
-    public static List<User> addNewEntry(Post newEntry, User user, List<User> users) throws IOException {
+    public static List<User> addNewEntry(Entry newEntry, User user, List<User> users) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
         // Update entries list in user
@@ -72,8 +72,8 @@ public class Utility {
         }
     }
 
-    static void updateUserEntries(Post newEntry, User user) {
-        List<Post> userEntries = user.getEntries();
+    static void updateUserEntries(Entry newEntry, User user) {
+        List<Entry> userEntries = user.getEntries();
         userEntries.add(newEntry);
         user.setEntries(userEntries);
     }

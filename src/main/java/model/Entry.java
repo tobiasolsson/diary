@@ -1,14 +1,14 @@
 package model;
 
-public class Post {
+public class Entry {
     private String title;
     private String body;
     private String date;
 
-    public Post() {
+    public Entry() {
     }
 
-    public Post(String title, String body, String date) {
+    public Entry(String title, String body, String date) {
         this.title = title;
         this.body = body;
         this.date = date;

@@ -72,10 +72,10 @@ public class Menu {
                 // If there are entries, list them
                 // Else say there are no entries
                 if (user.getEntries().size() > 0) {
-                    for (Post post : user.getEntries()) {
+                    for (Entry entry : user.getEntries()) {
                         System.out.println();
-                        System.out.printf("%s - %s \n", post.getDate(), post.getTitle());
-                        System.out.printf("%s\n", post.getBody());
+                        System.out.printf("%s - %s \n", entry.getDate(), entry.getTitle());
+                        System.out.printf("%s\n", entry.getBody());
                     }
                 } else {
                     System.out.println("Inga inlägg ännu!");
@@ -91,7 +91,7 @@ public class Menu {
 
                 String currentDate = LocalDate.now().toString();
 
-                Post newEntry = new Post(postTitle, postBody, currentDate);
+                Entry newEntry = new Entry(postTitle, postBody, currentDate);
 
                 // Update posts List<> to current values in JSON file
                 // returns new list of posts, so we can update posts list
