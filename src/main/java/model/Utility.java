@@ -8,28 +8,49 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Provides various utility functions to be used throughout the program
+ */
 public class Utility {
+    /**
+     * Path to the JSON file for read and write access
+     */
     static Path path = Paths.get("src/main/resources/diary.json");
+
+    /**
+     * Update the users and entries
+     *
+     * If JSON is empty, return empty User List, otherwise it returns a List of what's in the JSON
+     *
+     * @return List<User>
+     */
     public static List<User> updatePostsList() throws IOException {
-        // Returns empty List if nothing in JSON-file.
-        // Print error if JSON-file is empty
         ObjectMapper mapper = new ObjectMapper();
 
         List<User> updatedList = new ArrayList<>();
 
+        // try/catch, to handle if JSON is empty
         try {
             List<User> tmpUpdatedList = List.of(mapper.readValue(path.toFile(),
                     User[].class));
             updatedList.addAll(tmpUpdatedList);
         } catch (Exception e) {
-            System.out.println("Inga inlägg ännu.");
+            System.out.println("Kunde inte läsa databas");
         }
 
         return updatedList;
     }
 
+    /**
+     * Update list of posts and write to JSON file, then return the new list to update main function
+     *
+     * @param newEntry the new entry to add to the users entries List
+     * @param user the current user, so we add entry to correct user
+     * @param users the list of users, that we can use to update JSON
+     * @return users is the new updates list of users
+     * @throws IOException
+     */
     public static List<User> addNewEntry(Post newEntry, User user, List<User> users) throws IOException {
-        // Update list of posts and write to JSON file, then return the new list to update main function
         ObjectMapper mapper = new ObjectMapper();
 
         // Update entries list in user
@@ -57,6 +78,13 @@ public class Utility {
         user.setEntries(userEntries);
     }
 
+    /**
+     * Return current User based on currentUserName, return null if no user is chosen
+     *
+     * @param currentUserName
+     * @param users
+     * @return current User or null
+     */
     public static User getCurrentUser(String currentUserName, List<User> users) {
         for (User user:
              users) {
@@ -65,6 +93,13 @@ public class Utility {
         return null;
     }
 
+    /**
+     * Update JSON with new user, needed if there are no users
+     *
+     * @param newUser user to be added to List
+     * @param users List of users
+     * @throws IOException
+     */
     public static void writeNewUserToJSON(User newUser, List<User> users) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 

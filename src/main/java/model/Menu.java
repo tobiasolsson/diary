@@ -69,11 +69,18 @@ public class Menu {
                 // Before we list the entries, make sure list is updated from json-file
                 users = Utility.updatePostsList();
 
-                for (Post post : user.getEntries()) {
-                    System.out.println();
-                    System.out.printf("%s - %s \n", post.getDate(), post.getTitle());
-                    System.out.printf("%s\n", post.getBody());
+                // If there are entries, list them
+                // Else say there are no entries
+                if (user.getEntries().size() > 0) {
+                    for (Post post : user.getEntries()) {
+                        System.out.println();
+                        System.out.printf("%s - %s \n", post.getDate(), post.getTitle());
+                        System.out.printf("%s\n", post.getBody());
+                    }
+                } else {
+                    System.out.println("Inga inlägg ännu!");
                 }
+
 
             } else if (entriesMenuChoice == 2) {
                 System.out.println("Ange din titel:");
