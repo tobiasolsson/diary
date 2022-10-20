@@ -16,7 +16,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         List<User> users = Utility.updatePostsList();
 
-        Menu.displayStartMenu();
+        displayStartMenu();
         try {
             int userMenuChoice = Integer.parseInt(scanner.nextLine());
 
@@ -78,7 +78,7 @@ public class Menu {
 
         // if user == null display start menu
         // if user == someone, display entriesMenu
-        Menu.displayEntriesMenu(currentUserName);
+        displayEntriesMenu(currentUserName);
         try {
             int entriesMenuChoice = Integer.parseInt(scanner.nextLine());
 
