@@ -12,6 +12,7 @@ import java.util.List;
  * Provides various utility functions to be used throughout the program
  */
 public class Utility {
+
     /**
      * Path to the JSON file for read and write access
      */
@@ -22,9 +23,9 @@ public class Utility {
      *
      * If JSON is empty, return empty User List, otherwise it returns a List of what's in the JSON
      *
-     * @return List<User>
+     * @return list of users
      */
-    public static List<User> updatePostsList() throws IOException {
+    public static List<User> updatePostsList() {
         ObjectMapper mapper = new ObjectMapper();
 
         List<User> updatedList = new ArrayList<>();
@@ -48,7 +49,7 @@ public class Utility {
      * @param user the current user, so we add entry to correct user
      * @param users the list of users, that we can use to update JSON
      * @return users is the new updates list of users
-     * @throws IOException
+     * @throws IOException handle Jackson error
      */
     public static List<User> addNewEntry(Entry newEntry, User user, List<User> users) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -66,12 +67,24 @@ public class Utility {
         return users;
     }
 
+    /**
+     * Update entries list for a user
+     *
+     * @param updatedUser user with new entry
+     * @param users list of users to update
+     */
     private static void updateUserList(User updatedUser, List<User> users) {
-        for (User user: users) {
+        for (User user : users) {
             if (user.getName().equalsIgnoreCase(updatedUser.getName())) user.setEntries(updatedUser.getEntries());
         }
     }
 
+    /**
+     * Add Entry to users entries list
+     *
+     * @param newEntry Entry object to be added to the users entries list
+     * @param user user that we add the new entry to
+     */
     static void updateUserEntries(Entry newEntry, User user) {
         List<Entry> userEntries = user.getEntries();
         userEntries.add(newEntry);
@@ -81,8 +94,8 @@ public class Utility {
     /**
      * Return current User based on currentUserName, return null if no user is chosen
      *
-     * @param currentUserName
-     * @param users
+     * @param currentUserName string of the current username
+     * @param users list of all users from JSON file
      * @return current User or null
      */
     public static User getCurrentUser(String currentUserName, List<User> users) {
@@ -97,8 +110,8 @@ public class Utility {
      * Update JSON with new user, needed if there are no users
      *
      * @param newUser user to be added to List
-     * @param users List of users
-     * @throws IOException
+     * @param users List of users, updated from JSON-file
+     * @throws IOException to handle Jackson error
      */
     public static void writeNewUserToJSON(User newUser, List<User> users) throws IOException {
         ObjectMapper mapper = new ObjectMapper();

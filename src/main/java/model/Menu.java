@@ -22,6 +22,9 @@ public class Menu {
                         System.out.println(user.getName());
                     }
 
+                    System.out.println();
+                    System.out.println("Skriv in ditt användare namn du vill logga in på: ");
+
                     String chooseUser = scanner.nextLine();
 
                     // Loop all users and set currentUser to user.getName so capitalisation is correct
@@ -95,7 +98,7 @@ public class Menu {
 
                 // Update posts List<> to current values in JSON file
                 // returns new list of posts, so we can update posts list
-                //user.setEntries(Utility.addNewEntry(newEntry, user, users));
+                // user.setEntries(Utility.addNewEntry(newEntry, user, users));
                 users = Utility.addNewEntry(newEntry, user, users);
             } else if (entriesMenuChoice == 3) {
                 System.out.println("Välkommen åter!");
@@ -108,6 +111,7 @@ public class Menu {
     }
 
     public static void displayStartMenu(String userName) {
+        System.out.println();
         if (userName == null) {
             System.out.println("Aktiv användare: Ingen");
         } else {
@@ -116,12 +120,15 @@ public class Menu {
         System.out.println("1. Välj användare");
         System.out.println("2. Skapa ny användare");
         System.out.println("3. Avluta");
+        System.out.println();
     }
 
     public static void displayEntriesMenu(String userName) {
+        System.out.println();
         System.out.println("Aktiv användare: " + userName);
         System.out.println("1. Visa inlägg");
         System.out.println("2. Skriv ett inlägg");
         System.out.println("3. Avsluta");
+        System.out.println();
     }
 }
