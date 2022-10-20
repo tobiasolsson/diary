@@ -11,11 +11,11 @@ public class Menu {
      * First menu in program. User either chooses a user or creates new one. Or quits.
      *
      * @param currentUser string of the current user, default null
-     * @param users the list of users
      * @return string of the username
      */
-    public static String userChoiceMenu(String currentUser, List<User> users) {
+    public static String userChoiceMenu(String currentUser) {
         Scanner scanner = new Scanner(System.in);
+        List<User> users = Utility.updatePostsList();
 
         Menu.displayStartMenu(currentUser);
         try {
@@ -70,27 +70,27 @@ public class Menu {
     /**
      * Logged in menu, where the user can read och write to their list of entries
      *
-     * @param currentUser current username
-     * @param user current user Object
-     * @param users list of copy from JSON-file
-     * @return new list of Users
+     * @param currentUserName current username from parent menu
      */
-    public static List<User> loggedInMenu(String currentUser, User user, List<User> users) {
+    public static void loggedInMenu(String currentUserName) {
         Scanner scanner = new Scanner(System.in);
+
+        User currentUser = Utility.getCurrentUser(currentUserName);
+
         // if user == null display start menu
         // if user == someone, display entriesMenu
-        Menu.displayEntriesMenu(currentUser);
+        Menu.displayEntriesMenu(currentUserName);
         try {
             int entriesMenuChoice = Integer.parseInt(scanner.nextLine());
 
             if (entriesMenuChoice == 1) {
                 // Before we list the entries, make sure list is updated from json-file
-                users = Utility.updatePostsList();
+                List<User> users = Utility.updatePostsList();
 
                 // If there are entries, list them
                 // Else say there are no entries
-                if (user.getEntries().size() > 0) {
-                    for (Entry entry : user.getEntries()) {
+                if (currentUser.getEntries().size() > 0) {
+                    for (Entry entry : currentUser.getEntries()) {
                         System.out.println();
                         System.out.printf("%s - %s \n", entry.getDate(), entry.getTitle());
                         System.out.printf("%s\n", entry.getBody());
@@ -111,10 +111,8 @@ public class Menu {
 
                 Entry newEntry = new Entry(postTitle, postBody, currentDate);
 
-                // Update posts List<> to current values in JSON file
-                // returns new list of posts, so we can update posts list
-                // user.setEntries(Utility.addNewEntry(newEntry, user, users));
-                users = Utility.addNewEntry(newEntry, user, users);
+                Utility.addNewEntry(newEntry, currentUser);
+
             } else if (entriesMenuChoice == 3) {
                 System.out.println("Välkommen åter!");
                 System.exit(0);
@@ -122,7 +120,6 @@ public class Menu {
         } catch (Exception e) {
             System.out.println("Använd endast siffror i meny valen!");
         }
-        return users;
     }
 
     public static void displayStartMenu(String userName) {

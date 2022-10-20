@@ -47,12 +47,13 @@ public class Utility {
      *
      * @param newEntry the new entry to add to the users entries List
      * @param user the current user, so we add entry to correct user
-     * @param users the list of users, that we can use to update JSON
-     * @return users is the new updates list of users
      * @throws IOException handle Jackson error
      */
-    public static List<User> addNewEntry(Entry newEntry, User user, List<User> users) throws IOException {
+    public static void addNewEntry(Entry newEntry, User user) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
+
+        // Get current users and entries
+        List<User> users = updatePostsList();
 
         // Update entries list in user
         updateUserEntries(newEntry, user);
@@ -62,9 +63,6 @@ public class Utility {
 
         // Write new user list to JSON
         mapper.writeValue(path.toFile(), users);
-
-        // return updated users list with the new entry
-        return users;
     }
 
     /**
@@ -95,10 +93,10 @@ public class Utility {
      * Return current User based on currentUserName, return null if no user is chosen
      *
      * @param currentUserName string of the current username
-     * @param users list of all users from JSON file
      * @return current User or null
      */
-    public static User getCurrentUser(String currentUserName, List<User> users) {
+    public static User getCurrentUser(String currentUserName) {
+        List<User> users = updatePostsList();
         for (User user:
              users) {
             if (user.getName().equalsIgnoreCase(currentUserName)) return user;
