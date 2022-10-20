@@ -16,7 +16,7 @@ public class Utility {
     /**
      * Path to the JSON file for read and write access
      */
-    static Path path = Paths.get("src/main/resources/diary.json");
+    private static Path path = Paths.get("src/main/resources/diary.json");
 
     /**
      * Update the users and entries
@@ -83,7 +83,7 @@ public class Utility {
      * @param newEntry Entry object to be added to the users entries list
      * @param user user that we add the new entry to
      */
-    static void updateUserEntries(Entry newEntry, User user) {
+    private static void updateUserEntries(Entry newEntry, User user) {
         List<Entry> userEntries = user.getEntries();
         userEntries.add(newEntry);
         user.setEntries(userEntries);
