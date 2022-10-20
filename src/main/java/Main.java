@@ -12,7 +12,6 @@ public class Main {
             } else {
                 Menu.loggedInMenu(currentUserName);
             }
-
         }
     }
 }

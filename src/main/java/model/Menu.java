@@ -48,6 +48,7 @@ public class Menu {
                 System.out.println("Skriv (2) för att gå tillbaka");
                 int userCreationMenuChoice = Integer.parseInt(scanner.nextLine());
                 if (userCreationMenuChoice == 1) {
+                    System.out.println("Vad vill du att din användare ska heta?");
                     String newUserName = scanner.nextLine();
                     User newUser = new User(newUserName, new ArrayList<>());
                     // Update JSON with new user, so we can write entries to JSON
@@ -121,7 +122,7 @@ public class Menu {
         }
     }
 
-    public static void displayStartMenu() {
+    private static void displayStartMenu() {
         System.out.println();
         System.out.println("Aktiv användare: Ingen");
         System.out.println("1. Välj användare");
@@ -130,7 +131,7 @@ public class Menu {
         System.out.println();
     }
 
-    public static void displayEntriesMenu(String userName) {
+    private static void displayEntriesMenu(String userName) {
         System.out.println();
         System.out.println("Aktiv användare: " + userName);
         System.out.println("1. Visa inlägg");
