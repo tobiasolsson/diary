@@ -8,7 +8,7 @@ public class Main {
 
         while (true) {
             if (currentUserName == null) {
-                currentUserName = Menu.userChoiceMenu(null);
+                currentUserName = Menu.userChoiceMenu();
             } else {
                 Menu.loggedInMenu(currentUserName);
             }

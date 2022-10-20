@@ -10,14 +10,13 @@ public class Menu {
     /**
      * First menu in program. User either chooses a user or creates new one. Or quits.
      *
-     * @param currentUser string of the current user, default null
      * @return string of the username
      */
-    public static String userChoiceMenu(String currentUser) {
+    public static String userChoiceMenu() {
         Scanner scanner = new Scanner(System.in);
         List<User> users = Utility.updatePostsList();
 
-        Menu.displayStartMenu(currentUser);
+        Menu.displayStartMenu();
         try {
             int userMenuChoice = Integer.parseInt(scanner.nextLine());
 
@@ -122,13 +121,9 @@ public class Menu {
         }
     }
 
-    public static void displayStartMenu(String userName) {
+    public static void displayStartMenu() {
         System.out.println();
-        if (userName == null) {
-            System.out.println("Aktiv användare: Ingen");
-        } else {
-            System.out.println("Aktiv användare: " + userName);
-        }
+        System.out.println("Aktiv användare: Ingen");
         System.out.println("1. Välj användare");
         System.out.println("2. Skapa ny användare");
         System.out.println("3. Avluta");
