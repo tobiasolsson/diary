@@ -7,6 +7,13 @@ import java.util.Scanner;
 
 public class Menu {
 
+    /**
+     * First menu in program. User either chooses a user or creates new one. Or quits.
+     *
+     * @param currentUser string of the current user, default null
+     * @param users the list of users
+     * @return string of the username
+     */
     public static String userChoiceMenu(String currentUser, List<User> users) {
         Scanner scanner = new Scanner(System.in);
 
@@ -60,6 +67,14 @@ public class Menu {
         return null;
     }
 
+    /**
+     * Logged in menu, where the user can read och write to their list of entries
+     *
+     * @param currentUser current username
+     * @param user current user Object
+     * @param users list of copy from JSON-file
+     * @return new list of Users
+     */
     public static List<User> loggedInMenu(String currentUser, User user, List<User> users) {
         Scanner scanner = new Scanner(System.in);
         // if user == null display start menu
