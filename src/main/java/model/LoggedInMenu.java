@@ -20,13 +20,20 @@ public class LoggedInMenu {
         try {
             int entriesMenuChoice = Integer.parseInt(scanner.nextLine());
 
-            if (entriesMenuChoice == 1) {
-                assert currentUser != null;
-                listUserEntries(currentUser);
-            } else if (entriesMenuChoice == 2) {
-                createNewEntry(currentUser);
-            } else if (entriesMenuChoice == 3) {
-                Utility.exitProgram();
+            switch (entriesMenuChoice) {
+                case 1:
+                    assert currentUser != null;
+                    listUserEntries(currentUser);
+                    break;
+                case 2:
+                    createNewEntry(currentUser);
+                    break;
+                case 3:
+                    Utility.exitProgram();
+                    break;
+                default:
+                    System.out.println("Använd siffrorna 1-3 för att välja i menyn");
+                    break;
             }
         } catch (Exception e) {
             System.out.println("Använd endast siffror i meny valen!");

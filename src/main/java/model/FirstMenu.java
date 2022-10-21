@@ -19,16 +19,19 @@ public class FirstMenu {
         try {
             int userMenuChoice = Integer.parseInt(scanner.nextLine());
 
-            if (userMenuChoice == 1) {
-                return chooseUser();
-            } else if (userMenuChoice == 2) {
-                createNewUser();
-            } else if (userMenuChoice == 3) {
-                Utility.exitProgram();
-            } else {
-                System.out.println("Använd siffrorna 1-3 för att välja i menyn");
+            switch (userMenuChoice) {
+                case 1:
+                    return chooseUser();
+                case 2:
+                    createNewUser();
+                    break;
+                case 3:
+                    Utility.exitProgram();
+                    break;
+                default:
+                    System.out.println("Använd siffrorna 1-3 för att välja i menyn");
+                    break;
             }
-
         } catch (Exception e) {
             System.out.println("Fel input, använd siffrorna 1-3");
         }
