@@ -92,8 +92,8 @@ public class Menu {
                 if (currentUser.getEntries().size() > 0) {
                     for (Entry entry : currentUser.getEntries()) {
                         System.out.println();
-                        System.out.printf("%s - %s \n", entry.getDate(), entry.getTitle());
-                        System.out.printf("%s\n", entry.getBody());
+                        System.out.printf("%s - %s \n", entry.date(), entry.title());
+                        System.out.printf("%s\n", entry.body());
                     }
                 } else {
                     System.out.println("Inga inlägg ännu!");
