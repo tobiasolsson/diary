@@ -101,4 +101,9 @@ public class Utility {
         }
         return true;
     }
+
+    public static void exitProgram() {
+        System.out.println("Välkommen åter!");
+        System.exit(0);
+    }
 }

@@ -1,4 +1,5 @@
-import model.Menu;
+import model.LoggedInMenu;
+import model.FirstMenu;
 
 public class Main {
     public static void main(String[] args) {
@@ -6,9 +7,9 @@ public class Main {
 
         while (true) {
             if (currentUserName == null) {
-                currentUserName = Menu.userChoiceMenu();
+                currentUserName = FirstMenu.userChoiceMenu();
             } else {
-                Menu.loggedInMenu(currentUserName);
+                LoggedInMenu.loggedInMenu(currentUserName);
             }
         }
     }
