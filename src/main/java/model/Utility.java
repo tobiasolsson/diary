@@ -13,11 +13,8 @@ import java.util.List;
  */
 public class Utility {
     private static final ObjectMapper mapper = new ObjectMapper();
-
-    /**
-     * Path to the JSON file for read and write access
-     */
     private static final Path path = Paths.get("src/main/resources/diary.json");
+    private static List<User> users;
 
     /**
      * Update the users and entries*
@@ -49,7 +46,7 @@ public class Utility {
      */
     public static void addNewEntry(Entry newEntry, User currentUser) throws IOException {
         // Get current users and entries
-        List<User> users = updatePostsList();
+        users = updatePostsList();
 
         // filter users list for the current user
         // add newEntry when user is found
@@ -68,7 +65,7 @@ public class Utility {
      * @return current User or null
      */
     public static User getCurrentUser(String currentUserName) {
-        List<User> users = updatePostsList();
+        users = updatePostsList();
         for (User user:
              users) {
             if (user.name().equalsIgnoreCase(currentUserName)) return user;
@@ -80,10 +77,11 @@ public class Utility {
      * Update JSON with new user, needed if there are no users and JSON is empty so program don't crash
      *
      * @param newUser user to be added to List
-     * @param users List of users, updated from JSON-file
      * @throws IOException to handle Jackson error
      */
-    public static void writeNewUserToJSON(User newUser, List<User> users) throws IOException {
+    public static void writeNewUserToJSON(User newUser) throws IOException {
+        users = updatePostsList();
+
         users.add(newUser);
 
         mapper.writeValue(path.toFile(), users);
@@ -96,7 +94,7 @@ public class Utility {
      * @return false if matching username exists, otherwise true if username is available
      */
     public static boolean checkIfUserIsAvailable(String userName) {
-        List<User> users = updatePostsList();
+        users = updatePostsList();
 
         for (User user : users) {
             if (user.name().equalsIgnoreCase(userName)) return false;

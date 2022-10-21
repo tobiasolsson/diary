@@ -58,7 +58,7 @@ public class Menu {
                     if (Utility.checkIfUserIsAvailable(newUserName)) {
                         User newUser = new User(newUserName, new ArrayList<>());
                         // Update JSON with new user, so we can write entries to JSON
-                        Utility.writeNewUserToJSON(newUser, users);
+                        Utility.writeNewUserToJSON(newUser);
                     } else {
                         System.out.println("Användarnamnet finns redan, välj ett annat");
                     }
