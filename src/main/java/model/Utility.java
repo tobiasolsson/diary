@@ -16,11 +16,10 @@ public class Utility {
     /**
      * Path to the JSON file for read and write access
      */
-    private static Path path = Paths.get("src/main/resources/diary.json");
+    private static final Path path = Paths.get("src/main/resources/diary.json");
 
     /**
-     * Update the users and entries
-     *
+     * Update the users and entries*
      * If JSON is empty, return empty User List, otherwise it returns a List of what's in the JSON
      *
      * @return list of users
