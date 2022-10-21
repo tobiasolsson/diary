@@ -102,6 +102,9 @@ public class Utility {
         return true;
     }
 
+    /**
+     * Prints a message and exits with code 0
+     */
     public static void exitProgram() {
         System.out.println("Välkommen åter!");
         System.exit(0);

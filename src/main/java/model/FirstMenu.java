@@ -67,6 +67,10 @@ public class FirstMenu {
         return null;
     }
 
+    /**
+     *
+     * @throws IOException Jackson exception
+     */
     private static void createNewUser() throws IOException {
         System.out.println("Skriv (1) för att skapa en ny användare");
         System.out.println("Skriv (2) för att gå tillbaka");
@@ -88,6 +92,9 @@ public class FirstMenu {
         }
     }
 
+    /**
+     * Display the first menu choices
+     */
     private static void displayStartMenu() {
         System.out.println();
         System.out.println("Aktiv användare: Ingen");
