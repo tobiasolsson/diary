@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Menu {
     // TODO clean this mess up
+    private static final Scanner scanner = new Scanner(System.in);
 
     /**
      * First menu in program. User either chooses a user or creates new one. Or quits.
@@ -14,8 +15,6 @@ public class Menu {
      * @return string of the username
      */
     public static String userChoiceMenu() {
-        Scanner scanner = new Scanner(System.in);
-
         List<User> users = Utility.updatePostsList();
 
         displayStartMenu();
@@ -83,8 +82,6 @@ public class Menu {
      * @param currentUserName current username from parent menu
      */
     public static void loggedInMenu(String currentUserName) {
-        Scanner scanner = new Scanner(System.in);
-
         User currentUser = Utility.getCurrentUser(currentUserName);
 
         displayEntriesMenu(currentUserName);

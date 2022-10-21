@@ -12,6 +12,7 @@ import java.util.List;
  * Provides various utility functions to be used throughout the program
  */
 public class Utility {
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     /**
      * Path to the JSON file for read and write access
@@ -25,8 +26,6 @@ public class Utility {
      * @return list of users
      */
     public static List<User> updatePostsList() {
-        ObjectMapper mapper = new ObjectMapper();
-
         List<User> updatedList = new ArrayList<>();
 
         // try/catch, to handle if JSON is empty
@@ -49,8 +48,6 @@ public class Utility {
      * @throws IOException handle Jackson error
      */
     public static void addNewEntry(Entry newEntry, User currentUser) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-
         // Get current users and entries
         List<User> users = updatePostsList();
 
@@ -80,15 +77,13 @@ public class Utility {
     }
 
     /**
-     * Update JSON with new user, needed if there are no users
+     * Update JSON with new user, needed if there are no users and JSON is empty so program don't crash
      *
      * @param newUser user to be added to List
      * @param users List of users, updated from JSON-file
      * @throws IOException to handle Jackson error
      */
     public static void writeNewUserToJSON(User newUser, List<User> users) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-
         users.add(newUser);
 
         mapper.writeValue(path.toFile(), users);
