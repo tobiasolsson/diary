@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
+    // TODO clean this mess up
 
     /**
      * First menu in program. User either chooses a user or creates new one. Or quits.
@@ -26,7 +27,7 @@ public class Menu {
                 if (users.size() > 0) {
                     for (User user :
                             users) {
-                        System.out.println(user.getName());
+                        System.out.println(user.name());
                     }
 
                     System.out.println();
@@ -37,8 +38,8 @@ public class Menu {
                     // Loop all users and set currentUser to user.getName so capitalisation is correct
                     for (User user :
                             users) {
-                        if (user.getName().equalsIgnoreCase(chooseUser)) {
-                            return user.getName();
+                        if (user.name().equalsIgnoreCase(chooseUser)) {
+                            return user.name();
                         }
                     }
                 } else {
@@ -93,8 +94,8 @@ public class Menu {
             if (entriesMenuChoice == 1) {
                 // If there are entries, list them
                 // Else say there are no entries
-                if (currentUser.getEntries().size() > 0) {
-                    for (Entry entry : currentUser.getEntries()) {
+                if (currentUser.entries().size() > 0) {
+                    for (Entry entry : currentUser.entries()) {
                         System.out.println();
                         System.out.printf("%s - %s \n", entry.date(), entry.title());
                         System.out.printf("%s\n", entry.body());

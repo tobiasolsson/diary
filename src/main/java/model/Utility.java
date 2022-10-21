@@ -45,47 +45,23 @@ public class Utility {
      * Update list of posts and write to JSON file, then return the new list to update main function
      *
      * @param newEntry the new entry to add to the users entries List
-     * @param user the current user, so we add entry to correct user
+     * @param currentUser the current user, so we add entry to correct user
      * @throws IOException handle Jackson error
      */
-    public static void addNewEntry(Entry newEntry, User user) throws IOException {
+    public static void addNewEntry(Entry newEntry, User currentUser) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
         // Get current users and entries
         List<User> users = updatePostsList();
 
-        // Update entries list in user
-        updateUserEntries(newEntry, user);
-
-        // Update user in user list
-        updateUserList(user, users);
+        // filter users list for the current user
+        // add newEntry when user is found
+        users.stream()
+                .filter(user -> user.name().equalsIgnoreCase(currentUser.name()))
+                .forEach(user -> user.entries().add(newEntry));
 
         // Write new user list to JSON
         mapper.writeValue(path.toFile(), users);
-    }
-
-    /**
-     * Update entries list for a user
-     *
-     * @param updatedUser user with new entry
-     * @param users list of users to update
-     */
-    private static void updateUserList(User updatedUser, List<User> users) {
-        for (User user : users) {
-            if (user.getName().equalsIgnoreCase(updatedUser.getName())) user.setEntries(updatedUser.getEntries());
-        }
-    }
-
-    /**
-     * Add Entry to users entries list
-     *
-     * @param newEntry Entry object to be added to the users entries list
-     * @param user user that we add the new entry to
-     */
-    private static void updateUserEntries(Entry newEntry, User user) {
-        List<Entry> userEntries = user.getEntries();
-        userEntries.add(newEntry);
-        user.setEntries(userEntries);
     }
 
     /**
@@ -98,7 +74,7 @@ public class Utility {
         List<User> users = updatePostsList();
         for (User user:
              users) {
-            if (user.getName().equalsIgnoreCase(currentUserName)) return user;
+            if (user.name().equalsIgnoreCase(currentUserName)) return user;
         }
         return null;
     }
@@ -128,7 +104,7 @@ public class Utility {
         List<User> users = updatePostsList();
 
         for (User user : users) {
-            if (user.getName().equalsIgnoreCase(userName)) return false;
+            if (user.name().equalsIgnoreCase(userName)) return false;
         }
         return true;
     }
