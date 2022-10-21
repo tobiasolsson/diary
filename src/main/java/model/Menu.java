@@ -14,13 +14,14 @@ public class Menu {
      */
     public static String userChoiceMenu() {
         Scanner scanner = new Scanner(System.in);
+
         List<User> users = Utility.updatePostsList();
 
         displayStartMenu();
+
         try {
             int userMenuChoice = Integer.parseInt(scanner.nextLine());
 
-            // List all users
             if (userMenuChoice == 1) {
                 if (users.size() > 0) {
                     for (User user :
@@ -46,13 +47,21 @@ public class Menu {
             } else if (userMenuChoice == 2) {
                 System.out.println("Skriv (1) för att skapa en ny användare");
                 System.out.println("Skriv (2) för att gå tillbaka");
+
                 int userCreationMenuChoice = Integer.parseInt(scanner.nextLine());
+
                 if (userCreationMenuChoice == 1) {
                     System.out.println("Vad vill du att din användare ska heta?");
+
                     String newUserName = scanner.nextLine();
-                    User newUser = new User(newUserName, new ArrayList<>());
-                    // Update JSON with new user, so we can write entries to JSON
-                    Utility.writeNewUserToJSON(newUser, users);
+
+                    if (Utility.checkIfUserIsAvailable(newUserName)) {
+                        User newUser = new User(newUserName, new ArrayList<>());
+                        // Update JSON with new user, so we can write entries to JSON
+                        Utility.writeNewUserToJSON(newUser, users);
+                    } else {
+                        System.out.println("Användarnamnet finns redan, välj ett annat");
+                    }
                 }
             } else if (userMenuChoice == 3) {
                 System.out.println("Välkommen åter!");
@@ -77,16 +86,11 @@ public class Menu {
 
         User currentUser = Utility.getCurrentUser(currentUserName);
 
-        // if user == null display start menu
-        // if user == someone, display entriesMenu
         displayEntriesMenu(currentUserName);
         try {
             int entriesMenuChoice = Integer.parseInt(scanner.nextLine());
 
             if (entriesMenuChoice == 1) {
-                // Before we list the entries, make sure list is updated from json-file
-                List<User> users = Utility.updatePostsList();
-
                 // If there are entries, list them
                 // Else say there are no entries
                 if (currentUser.getEntries().size() > 0) {

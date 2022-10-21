@@ -1,9 +1,8 @@
 import model.Menu;
 
-import java.io.IOException;
-
 public class Main {
-    public static void main(String[] args) throws IOException {
+    // TODO gör om User till record, .getEntries.add()?
+    public static void main(String[] args) {
         String currentUserName = null;
 
         while (true) {

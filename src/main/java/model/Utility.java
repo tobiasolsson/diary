@@ -117,4 +117,19 @@ public class Utility {
 
         mapper.writeValue(path.toFile(), users);
     }
+
+    /**
+     * Check if username already exists to avoid conflicting usernames
+     *
+     * @param userName input from user
+     * @return false if matching username exists, otherwise true if username is available
+     */
+    public static boolean checkIfUserIsAvailable(String userName) {
+        List<User> users = updatePostsList();
+
+        for (User user : users) {
+            if (user.getName().equalsIgnoreCase(userName)) return false;
+        }
+        return true;
+    }
 }
