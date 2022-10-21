@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FirstMenu {
-    // TODO clean this mess up
-    // TODO bryt ut dom olika menyerna i varsina klasser
     private static final Scanner scanner = new Scanner(System.in);
 
     /**
